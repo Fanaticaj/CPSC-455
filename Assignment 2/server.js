@@ -4,7 +4,8 @@ app = express();
 
 // fileCopy:
 // Params:
-//  copies - are the total number of copies of 'original.txt' the user will 
+//  copies - are the total number of copies of 'original.txt' the user will
+// fileCopies grabs the contents of 'original.txt' and creates 'copies' amount of them
 function fileCopy(copies) {
 
     let contents = fs.readFileSync('original.txt', 'utf8');
@@ -13,10 +14,13 @@ function fileCopy(copies) {
     }
 }
 
-
 app.get('/', function(req, resp) {
+
+    // When a request is received to the host, respond with index.html
     resp.sendFile(__dirname + '/index.html');
+    // Based off the GET request, generate that many files
     fileCopy(req.query.copies);
+    // Respond if a get request was received
     if(req.query.copies > 0) {
         resp.send('Files have been created.');
     }
