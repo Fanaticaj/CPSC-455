@@ -18,6 +18,9 @@ app.get('/', function(req, resp) {
 
     // When a request is received to the host, respond with index.html
     resp.sendFile(__dirname + '/index.html');
+});
+
+app.get('/actionscript', function(req, resp) {
     // Based off the GET request, generate that many files
     fileCopy(req.query.copies);
     // Respond if a get request was received
